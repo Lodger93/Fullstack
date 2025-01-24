@@ -10,7 +10,7 @@ const Header = (props) => {
 const Part = (props) => {
   return (
     <div>
-      <p>{props.parts[props.indx]} {props.excercises[props.indx]}</p>
+      <p>{props.parts[props.indx].name} {props.parts[props.indx].excercises}</p>
     </div>
   )
 }
@@ -19,9 +19,9 @@ const Part = (props) => {
 const Content = (props) => {
   return (
     <div>
-      <Part indx={0} parts={props.parts} excercises={props.excercises} />
-      <Part indx={1} parts={props.parts} excercises={props.excercises} />
-      <Part indx={2} parts={props.parts} excercises={props.excercises} />
+      <Part indx={0} parts={props.parts} />
+      <Part indx={1} parts={props.parts} />
+      <Part indx={2} parts={props.parts} />
     </div>
   )
 }
@@ -29,27 +29,37 @@ const Content = (props) => {
 const Total = (props) => {
   return (
     <div>
-      <p>{props.excercises[0] +props.excercises[1] +props.excercises[2]}</p>
+      <p>{props.parts[0].excercises+props.parts[1].excercises+props.parts[2].excercises}</p>
     </div>
   )
 }
 
 const App = () => {
   const now = new Date()
-  const course = 'Half-Stack application development'
-  const parts = ['Fundamentals of React',
-                  'Using props to pass data',
-                  'State of a component']
-
-  const excercises = [10, 7, 14]
-
+  const course = {
+            name: 'Half-Stack application development',
+            parts:[
+              {
+                name: 'Fundamentals of React',
+                excercises: 10
+              },
+              {
+                name:'Using props to pass data',
+                excercises: 7
+              },
+              {  
+                name:'State of a component',
+                excercises: 14
+              }
+            ]
+          }
   console.log(now)
 
   return (
     <div>
-    <Header course={course}/>
-    <Content parts={parts} excercises={excercises}/>
-    <Total excercises={excercises}/>
+    <Header course={course.name}/>
+    <Content parts={course.parts}/>
+    <Total parts={course.parts}/>
     </div>
   )
 }
