@@ -19,7 +19,7 @@ const Content = ({course}) => {
   return (
     <>
     {course.parts.map(part =>
-       <Part part={part}/>
+       <Part key={part.id} part={part} />
     )}
     </>
   )
@@ -27,12 +27,14 @@ const Content = ({course}) => {
 }
 
 const Total = ({ course }) => {
-  var sum = 0
-  for (var i = 0; i < course.parts.length; i++) {
-    sum += course.parts[i].exercises
-  }
+  
+  const total = course.parts.reduce( (s, p, i) => {
+    console.log(i,'What is happening s:', s,'p:', p.exercises)
+    return(s + p.exercises) 
+  }, 0
+)
   return(
-    <p><b>total of {sum} exercises </b></p>
+    <p><b>total of {total} exercises </b></p>
   )
 }
 
