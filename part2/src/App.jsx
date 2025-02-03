@@ -3,20 +3,20 @@ import axios from 'axios'
 import DisplayPersons from './components/DisplayPersons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
+import phonebookService from './services/phonebook'
 import './App.css'
 
 const App = () => {
   const [persons, setPersons] = useState([])
 
   useEffect(() => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        console.log('promise fulfilled')
-        setPersons(response.data)
+    phonebookService.getAll()
+      .then(initialPhonebook => {
+        setPersons(initialPhonebook)
       })
   }, [])
+
+
   const [newFilter, setNewFilter] = useState('')
   const personsToDisplay = persons.filter(person => person.name.includes(newFilter))
 

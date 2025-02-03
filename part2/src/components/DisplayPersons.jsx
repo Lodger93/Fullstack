@@ -1,10 +1,14 @@
 import trashIcon from '../assets/trash.svg'
+import phonebookService from '../services/phonebook'
+
 const Person =({person, persons, setPersons})=>{
  
     const handleDeletion =()=>{
-        console.log("Deleting item");
-        const updatedPersons = persons.filter(p => p.id !== person.id);
-        setPersons(updatedPersons);
+      if (window.confirm(`Delete ${person.name}?`)) {
+          const updatedPersons = persons.filter(p => p.id !== person.id);
+          phonebookService.deletePerson(person.id);
+          setPersons(updatedPersons);
+      }
     }
 
     return (

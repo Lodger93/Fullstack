@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import phonebookService from '../services/phonebook'
 
 const PersonForm =({persons, setPersons})=>{
 
@@ -21,8 +22,13 @@ const PersonForm =({persons, setPersons})=>{
           name: newName,
           number: newNumber
         }
-        const newPersons = persons.concat(personObject)
-        setPersons(newPersons)
+
+        phonebookService.create(personObject)
+          .then(returnedPerson => {
+            setPersons(persons.concat(returnedPerson))
+            setNewName('')
+            setNewNumber('')
+          })
       }
     }
   
