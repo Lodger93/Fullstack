@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import phonebookService from '../services/phonebook'
 
-const PersonForm =({persons, setPersons})=>{
+const PersonForm =({persons, setPersons, setNotificationMessage, setErrorMessage})=>{
 
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
@@ -24,6 +24,9 @@ const PersonForm =({persons, setPersons})=>{
                 const updatedPersons = persons.map( p=> p.id===returnedPerson.id ? returnedPerson : p )
                 setPersons(updatedPersons)
              })
+              .catch( error => {
+                phonebookService.notification(`Information of ${person.name} has already been removed from the server`, setErrorMessage)   
+              })
             }
       }
       else{
@@ -38,6 +41,7 @@ const PersonForm =({persons, setPersons})=>{
             setNewName('')
             setNewNumber('')
           })
+      phonebookService.notification('Phonebook has been updated', setNotificationMessage)
       }
     }
   

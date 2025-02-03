@@ -21,4 +21,11 @@ const update = (id, newObject) => {
     return request.then(response => response.data)
 }
 
-export default { getAll, create, update, deletePerson }
+const notification = (message, setMessage) =>{
+    setMessage(message)
+    setTimeout(() => {
+        setMessage(null)
+    }, 5000)
+}
+
+export default { getAll, create, update, deletePerson, notification }
