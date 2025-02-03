@@ -15,7 +15,16 @@ const PersonForm =({persons, setPersons})=>{
       const alreadyInPersons = persons.some(person => person.name === newName)
   
       if(alreadyInPersons){
-        alert(newName + " already in phonebook")
+        const person = {...persons.find(p => p.name === newName), number: newNumber}
+
+        if (window.confirm(`${newName} is already in the phonebook. Do you want to replace the old number with the new one?`)){
+        
+            phonebookService.update(person.id, person)
+             .then(returnedPerson => {
+                const updatedPersons = persons.map( p=> p.id===returnedPerson.id ? returnedPerson : p )
+                setPersons(updatedPersons)
+             })
+            }
       }
       else{
         const personObject = {
