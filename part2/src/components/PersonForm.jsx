@@ -25,7 +25,7 @@ const PersonForm =({persons, setPersons, setNotificationMessage, setErrorMessage
                 setPersons(updatedPersons)
              })
               .catch( error => {
-                phonebookService.notification(`Information of ${person.name} has already been removed from the server`, setErrorMessage)   
+                phonebookService.notification(error.response.data.error, setErrorMessage)   
               })
             }
       }
@@ -40,8 +40,13 @@ const PersonForm =({persons, setPersons, setNotificationMessage, setErrorMessage
             setPersons(persons.concat(returnedPerson))
             setNewName('')
             setNewNumber('')
+            phonebookService.notification('Phonebook has been updated', setNotificationMessage)
           })
-      phonebookService.notification('Phonebook has been updated', setNotificationMessage)
+          .catch(error => {
+            console.log(error.response.data)
+            phonebookService.notification(error.response.data.error, setErrorMessage)
+          }
+          )
       }
     }
   

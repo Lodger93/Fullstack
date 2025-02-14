@@ -11,8 +11,13 @@ const Person =({person, persons, setPersons})=>{
       }
     }
 
+    const handleClick =()=>{
+      console.log("Clicked on ", person.name, person.id)
+      phonebookService.getPerson(person.id)
+    }
+
     return (
-        <tr>
+        <tr onClick={handleClick}>
           <td> {person.name} </td>
           <td> {person.number} </td>
           <td className='trash'> <img onClick={handleDeletion} src={trashIcon} style={{ cursor: 'pointer' }} /></td>
