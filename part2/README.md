@@ -1,8 +1,6 @@
-# React + Vite
+# Phonebook app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+From course: https://fullstackopen.com/en/
 
-Currently, two official plugins are available:
+Backend at: https://phonebook-yw8m.onrender.com/api/persons
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
